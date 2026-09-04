@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fichamentos STF — PGE/AL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<header class="topo nao-imprime">
+  <button class="marca" id="btInicio">Fichamentos STF · PGE/AL</button>
+  <span class="conta" id="statusTopo"></span>
+  <div class="dir">
+    <button class="bt" id="btFilas">Filas</button>
+    <button class="bt" id="btBackup">Backup</button>
+    <button class="bt" id="btTema" title="Alternar tema">Tema</button>
+  </div>
+</header>
+
+<!-- ======== BIBLIOTECA ======== -->
+<section id="vBiblioteca">
+  <div class="filtros nao-imprime">
+    <div class="linha">
+      <span class="rot">Disciplina</span>
+      <span id="fDisciplinas" class="linha"></span>
+    </div>
+    <div class="linha">
+      <span class="rot">Ano</span><span id="fAnos" class="linha"></span>
+      <span class="rot" style="margin-left:10px">Informativo</span>
+      <input type="text" id="fInfMin" size="4" inputmode="numeric" placeholder="de">
+      <input type="text" id="fInfMax" size="4" inputmode="numeric" placeholder="até">
+    </div>
+    <div class="linha">
+      <span class="rot">Situação</span>
+      <select id="fStatus">
+        <option value="todos">todos</option>
+        <option value="nao">não estudados</option>
+        <option value="visto">já estudados</option>
+      </select>
+      <select id="fTag"><option value="">todas as tags</option></select>
+      <select id="fRelator"><option value="">todos os relatores</option></select>
+      <button class="chip" id="fRG" aria-pressed="false">repercussão geral</button>
+      <button class="chip" id="fFich" aria-pressed="true">só com fichamento</button>
+    </div>
+    <div class="linha">
+      <input type="search" id="fBusca" placeholder="Buscar por processo, tema, tese, matéria, relator…">
+      <button class="bt" id="btLimpar">Limpar filtros</button>
+    </div>
+  </div>
+  <div class="lista" id="lista"></div>
+  <div class="rodape-fixo nao-imprime">
+    <span class="conta" id="contador"></span>
+    <div class="dir">
+      <button class="bt" id="btImprimir">Imprimir / PDF</button>
+      <button class="bt bt--forte" id="btEstudar">Estudar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ======== LEITURA (ficha avulsa ou fila de estudo) ======== -->
+<section id="vFicha" hidden>
+  <article class="folha"><div class="leitura" id="conteudoFicha"></div></article>
+  <div class="rodape-fixo nao-imprime" id="rodapeEstudo">
+    <button class="bt" id="btVoltar">← Lista</button>
+    <button class="bt" id="btInicioFicha">Início</button>
+    <span class="conta" id="posFila"></span>
+    <div class="barra-prog" id="progFila"><i style="width:0"></i></div>
+    <div class="dir">
+      <button class="bt" id="btPdfFicha">PDF desta ficha</button>
+      <button class="bt" id="btAnterior" title="Anterior (seta ←)">←</button>
+      <button class="bt" id="btSeguinte" title="Próximo sem marcar (seta →)">Próximo →</button>
+      <button class="bt bt--forte" id="btProximo" title="Marcar e avançar (tecla E)">Estudado ✓</button>
+    </div>
+  </div>
+</section>
+
+<div id="areaImpressao" hidden></div>
+
+<dialog id="dlg"><div class="dlg" id="dlgCorpo"></div></dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
